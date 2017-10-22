@@ -1,0 +1,36 @@
+<!-- login.html -->
+
+<div class="">
+
+    <div class="container">
+
+        <div class="card card-login mx-auto mt-5">
+            <div class="card-header">Login | Hackney Social Admin Portal</div>
+            <div class="card-body">
+
+                <div ng-show="err">
+                    <span> {{ err.message }} </span>
+                </div>
+
+                <form ng-submit="login()">
+
+                    <div class="form-group">
+                        <label for="inputEmail">Email</label>
+                        <input type="email" id="inputEmail" class="form-control" placeholder="Email" ng-model="user.email">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="inputPassword">Password</label>
+                        <input type="password" id="inputPassword" class="form-control" placeholder="Password" ng-model="user.password">
+                    </div>
+
+                    <input type="submit" class="btn btn-primary btn-block" value="Login">
+
+                </form>
+                
+            </div>
+        </div>
+
+    </div>
+
+</div>

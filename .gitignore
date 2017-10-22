@@ -1,0 +1,3 @@
+*.json
+api/middleware/*
+assets/js/app.js
