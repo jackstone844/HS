@@ -16,3 +16,67 @@
     <h3>Let's get it added to Hackney Social</h3>
 </div>
 
+<div class="jumbotron text-center">
+		
+	<form ng-submit="addNewVenue()">
+				
+		<div class="form-group">
+			<label for="venueId">Venue ID</label>
+			<input type="venueId" id="venueId" class="form-control" placeholder="Number_90" ng-model="newVenue.venueId">
+		</div>
+		
+		<div class="form-group">
+			<label for="venueName">Venue Name</label>
+			<input type="venueName" id="venueName" class="form-control" placeholder="Number 90" ng-model="newVenue.venueName">
+		</div>
+		
+		<div class="form-group">
+			<label for="description">Description of Venue</label>
+			<input type="description" id="description" class="form-control" placeholder="this is the description field" ng-model="newVenue.description">
+		</div>
+				
+		<div class="form-group">
+			<label for="inputaddressLine1">addressLine1</label>
+			<input type="addressLine1" id="addressLine1" class="form-control" placeholder="2 Prince Edward Road" ng-model="newVenue.addressLine1">
+		</div>
+
+		<div class="form-group">
+			<label for="inputaddressLine2">addressLine2</label>
+			<input type="addressLine2" id="addressLine2" class="form-control" placeholder="Hackney Wick" ng-model="newVenue.addressLine2">
+		</div>
+
+		<div class="form-group">
+			<label for="inputpostCode">postCode</label>
+			<input type="postCode" id="postCode" class="form-control" placeholder="SW12 9LQ" ng-model="newVenue.postCode">
+		</div>
+
+		<div class="form-group">
+			<label for="inputpostCode">rating (Out of 5)</label>
+			<input type="rating" id="rating" class="form-control" placeholder="4" ng-model="newVenue.rating">
+		</div>
+
+		<div class="form-group">
+			<label for="price">price (Out of 5)</label>
+			<input type="price" id="price" class="form-control" placeholder="3" ng-model="newVenue.price">
+		</div>
+
+		<div class="form-group">
+			<label for="features">features</label>
+			<input type="features" id="features" class="form-control" placeholder="Drinking Garden" ng-model="newVenue.features">
+		</div>
+
+		<div class="form-group">
+			<label for="category">category</label>
+			<input type="category" id="category" class="form-control" placeholder="Warehouse Watering Hole" ng-model="newVenue.category">
+		</div>
+
+		<div class="form-group">
+			<label for="category">starCount (Out of 5)</label>
+			<input type="starCount" id="starCount" class="form-control" placeholder="4" ng-model="newVenue.starCount">
+		</div>
+				
+		<input type="submit" class="btn btn-primary btn-block" value="addNewVenue">
+				
+	</form>
+		
+</div>

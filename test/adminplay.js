@@ -272,5 +272,13 @@ adminRef.currentUser.getToken(true)
 
             //addVenueName("testing new", 'new venue - does this work?! I dont think so hahahha', 'i am the id');
 
-            addVenue('venue wow', 'venue wow testing id', 'req.body.description', 'req.body.addressLine1', 'req.body.addressLine2', 'req.body.postCode', 'req.body.rating', 'req.body.price', 'req.body.features', 'req.body.category', 'testing new');
+            //addVenue('venue wow', 'venue wow testing id', 'req.body.description', 'req.body.addressLine1', 'req.body.addressLine2', 'req.body.postCode', 'req.body.rating', 'req.body.price', 'req.body.features', 'req.body.category', 'testing new');
                     //(venueId, venueName, description, addressLine1, addressLine2, postCode, rating, price, features, category, adminUid)
+
+            
+
+                        let counterRef = databaseRef.ref('admins/jackstone448/venueCount');
+                        counterRef.once("value")
+                        .then(function(snapshot){
+                            console.log(snapshot.val());
+                        });

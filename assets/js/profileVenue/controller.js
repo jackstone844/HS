@@ -5,28 +5,70 @@
         .module('app')
         .controller('venueController', venueController);
 
-        venueController.$injext = ['$scope', 'Auth', '$state'];
+        venueController.$injext = ['$scope', 'Auth', '$state', '$http', '$httpParamSerializer'];
 
-        function venueController ($scope, Auth, $state) {
+        function venueController ($scope, Auth, $state, $http, $httpParamSerializer) {
             
             $scope.userDetails = {
                 uid : Auth.$getAuth().uid,
-                token : Auth.$getAuth().refreshToken
+                FBtoken : Auth.$getAuth().refreshToken,
+                HStoken : localStorage.HSToken
             };
 
             $scope.newVenue = {
-                venueId : $scope.newVenueId,
-                venueName : $scope.newVenueName,
-                description : $scope.newVenueDescription,
-                addressLine1 : $scope.newVenueAdLineOne,
-                addressLine2 : $scope.newVenueAdLineTwo,
-                postCode : $scope.newVenuePostcode,
-                rating : $scope.newVenueRating,
-                price : $scope.newVenuePrice,
-                features : $scope.newVenueFeaters,
-                category : $scope.newVenueCategory,
-                starCount : $scope.newVenueStars,
-                adminUid : $scope.userDetails.uid
+                venueId : '',
+                venueName : '',
+                description : '',
+                addressLine1 : '',
+                addressLine2 : '',
+                postCode : '',
+                rating : '',
+                price : '',
+                features : '',
+                category : '',
+                starCount : ''
+                // fb
+                // insta
+                // website
+                // contact number
+                // picture 1 url
+                // picture 2 url
             };
+
+            $scope.addNewVenue = function() {
+
+                return $http({
+                    url: '/api/add/venue',
+                    method: 'POST',
+                    headers: {'Content-Type': 'application/x-www-form-urlencoded'},
+                    transformRequest: $httpParamSerializer,
+                    data: {
+                        "venueId": $scope.newVenue.venueId,
+                        "venueName" : $scope.newVenue.venueName,
+                        "description" : $scope.newVenue.description, 
+                        "addressLine1" : $scope.newVenue.addressLine1,
+                        "addressLine2": $scope.newVenue.addressLine2,
+                        "postCode" : $scope.newVenue.postCode,
+                        "rating" : $scope.newVenue.rating, 
+                        "price" : $scope.newVenue.price,
+                        "features" : $scope.newVenue.features,
+                        "category" : $scope.newVenue.category, 
+                        "starCount" : $scope.newVenue.starCount,
+                        "adminUid" : $scope.userDetails.uid,
+                        "token" : $scope.userDetails.HStoken
+                    }
+                })
+                .then(function(res){
+                    // log the response & assign it to newAdminUserRes $scope
+                    console.log(res);
+                    $scope.addNewVenueResult = res;
+                }, function(err){
+                    // log the error & assign it to newAdminUserRes $scope
+                    console.log(err);
+                    $scope.addNewVenueResult = err;
+                });
+            };
+
+      
         }
 })();

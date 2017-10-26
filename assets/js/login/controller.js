@@ -19,7 +19,7 @@
                 .then(function(auth){
                     console.log('User logged in to Firebase');
                     
-                    /* lets get a ref to the signed in user's uid and pass it to getJWT */
+                    // lets get a ref to the signed in user's uid and pass it to getJWT
                     var uid = Auth.$getAuth().uid;
                     getJWT(uid);
                     
@@ -42,15 +42,15 @@
                 })
                 .then(function(res){
                     if (res.data.authenticated == true) {   
-                        /* If successful, log jwt and bind it to the scope */
+                        // If successful, log jwt and bind it to the scope
                         console.log(res.data.token);
                         var validJWT = res.data.token;
-                        /* push validJWT to local storage  */
+                        // push validJWT to local storage 
                         localStorage.setItem('HSToken', validJWT);
-                        /* push user to their profile view */
+                        // push user to their profile view
                         $state.go('admin.home');
                     } else {
-                        /* sign user out as not authenticated on server */
+                        // sign user out as not authenticated on server
                         Auth.$signOut()
                         .then(function(){
                             console.log('no token recieved');

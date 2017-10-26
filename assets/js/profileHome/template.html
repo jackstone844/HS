@@ -14,3 +14,41 @@
     <h3>It's good to see you again :)</h3>
 </div>
 
+<div class="jumbotron text-center">
+		<p>
+			<date></date>
+		</p>
+		<p>
+			<clock></clock>
+		</p>
+</div>
+
+<div class="jumbotron text-center">
+
+	<form ng-submit="addNewAdmin()">
+		
+		<div class="form-group">
+			<label for="inputuid">User Name</label>
+			<input type="uid" id="uid" class="form-control" placeholder="jackstone844" ng-model="newAdmin.uid">
+		</div>
+
+		<div class="form-group">
+				<label for="inputDisplayName">First and Last Name</label>
+				<input type="displayName" id="displayName" class="form-control" placeholder="Jack Stone" ng-model="newAdmin.displayName">
+		</div>
+
+		<div class="form-group">
+					<label for="inputEmail">Email</label>
+					<input type="email" id="email" class="form-control" placeholder="jackstone844@gmail.com" ng-model="newAdmin.email">
+		</div>
+		
+		<div class="form-group">
+			<label for="inputPassword">Password</label>
+			<input type="password" id="inputPassword" class="form-control" placeholder="" ng-model="newAdmin.password">
+		</div>
+		
+		<input type="submit" class="btn btn-primary btn-block" value="addNewAdmin">
+		
+	</form>
+
+</div>
