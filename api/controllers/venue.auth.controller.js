@@ -1,6 +1,7 @@
 const { FB } = require('../helpers/firebaseConfig');
 const { FBA } = require('../helpers/firebaseAuthConfig.js');
 const adminRef = FBA.auth();
+const adminDatabaseRef = FBA.database();
 const databaseRef = FB.database();
 const auth = require('../middleware/venue.auth.middleware');
 
@@ -8,11 +9,7 @@ module.exports = router => {
   
     router.use(auth);
 
-    // call every time user hits home dashboard
-    router.get('/api/hello', (req, res, next) => {
-        res.send("hello world, you are authenticated!");
-    });
-
+    // Gets the signed in admin's count of venues added
     router.get('/api/current-admin/venue-count', (req, res, next) => {
         function adminVenueCounter (adminUid) {
             let counterRef = databaseRef.ref('admins/' + adminUid + '/venueCount');
@@ -29,15 +26,18 @@ module.exports = router => {
                 });
             });
         }
-
+        
         adminVenueCounter(req.query.uid);
+        
     });
     
-
+    // Adds a news venue to the DB
+    // Increments the current admins count of venues added by one in the DB
+    // Adds the name of the venue added to the Admins profile in the DB
     router.post('/api/add/venue', (req, res, next) => {
 
         function addVenue (venueId, venueName, description, addressLine1, addressLine2, postCode, rating, price, features, category, starCount, adminUid) {    
-            let itemRef = databaseRef.ref('item/' + venueId);
+            let itemRef = adminDatabaseRef.ref('item/' + venueId);
             let venudid = venueId;
             let venuename = venueName;
             let adminuid = adminUid;
@@ -75,15 +75,15 @@ module.exports = router => {
         
         // Increment the count of venues added by the admin by one
         let addVenueCount = (uid) => {
-            let userRefCount = databaseRef.ref('admins/' + uid + '/' + 'venueCount');
+            let userRefCount = adminDatabaseRef.ref('admins/' + uid + '/' + 'venueCount');
             userRefCount.transaction(function(currentValue){
                 return (currentValue || 0 ) + 1;
             });
         };
 
-        // Add the name of the venue added to the admin
+        // Add the name of the venue added to the admin's profile in the DB
         let addVenueName = (uid, venueName, venueId) => {
-            let userRefVenue = databaseRef.ref('/admins/' + uid + '/' + 'venuesAdded');
+            let userRefVenue = adminDatabaseRef.ref('/admins/' + uid + '/' + 'venuesAdded');
             userRefVenue.child(venueId).set(venueName);
         };
 
@@ -91,6 +91,8 @@ module.exports = router => {
         
     });
 
+    // Adds an admin to the Authentication system
+    // Creates a new admin profile in the DB with a count of venues added as 0 & an empty array of venue names added
     router.post('/api/add/admin', (req, res, next) => {
     
         let addAdmin = (a, b, c, d) => {
@@ -98,16 +100,17 @@ module.exports = router => {
                 uid: a,
                 displayName: b,
                 email: c,
-                password: d,
-            })
+                password: d
+        })
         .then(function(userRecord) {
             addAdminDB(userRecord.uid);
-            console.log(userRecord.uid);
+            return userRecord.uid;
+        })
+        .then(function(newUserUid){
             res.json({
                 added: true,
-                adminUid: userRecord.uid
+                adminUid: newUserUid
             });
-
         })
         .catch(function(error) {
             console.log("Error creating new user:", error);
@@ -120,10 +123,10 @@ module.exports = router => {
         };
         
         // When a new admin is added to FB Authentication
-        // also add the uid to the database
+        // also add the uid to the database to create the admin's profile
         // primary key is always uid to link JSON objects
         let addAdminDB = (a) => {
-            let userRef = databaseRef.ref('admins/' + a);
+            let userRef = adminDatabaseRef.ref('admins/' + a);
             userRef.set({
                 venueCount : 0,
                 venuesAdded : [""]

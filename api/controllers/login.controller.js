@@ -17,7 +17,6 @@ module.exports = router => {
             .then(function(userRecord) {
                 let user = userRecord.toJSON();
                 let e = user.email;
-                console.log(user);
                 return e;
             })
             .then(function(userEmail) {

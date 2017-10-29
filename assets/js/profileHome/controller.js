@@ -57,7 +57,7 @@
                 });
             };
 
-            // Adds a new admin to Hackney Social
+            // Adds a new venue to Hackney Social
             $scope.getAdminCount = function() {
                 
                 return $http({
@@ -80,13 +80,6 @@
                     $scope.error.message = err;
                 });
             };
-
-            // Gets current admins venue count
-                // req to /api/current-admin/venue-count
-                // send uid in query string as uid="jackstone448" & token="assing Token"
-                // assign response to scope.userVenueCount.count
-                //ng-init to call this function on load
-                // /api/current-admin/venue-count?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhZG1pbiI6ImphY2tzdG9uZTQ0OEBvdXRsb29rLmNvbSIsImlhdCI6MTUwODcxMTQ2MywiZXhwIjoxNTA4Nzk3ODYzfQ.DzxxhkVN5zX3UAiuSOoTzlT3LKiJXPXscpMVS_8cZIs&uid=jackstone448
 
         }
         
