@@ -5,14 +5,16 @@
         .module('app')
         .controller('homeController', homeController);
 
-        homeController.$inject = ['$scope', 'Auth', '$state', '$http', '$httpParamSerializer', '$interval'];
+        homeController.$inject = ['$scope', 'Auth', '$state', '$http', '$httpParamSerializer', '$interval', '$location'];
 
-        function homeController ($scope, Auth, $state, $http, $httpParamSerializer, $interval) {
+        function homeController ($scope, Auth, $state, $http, $httpParamSerializer, $interval, $location) {
 
             $scope.userDetails = {
                 uid : Auth.$getAuth().uid,
                 FBtoken : Auth.$getAuth().refreshToken,
-                HStoken : localStorage.HSToken
+                HStoken : localStorage.HSToken,
+                venueCount : '',
+                venuesAdded : [],
             };
 
             $scope.newAdmin = {
@@ -20,10 +22,6 @@
                 displayName : '',
                 email : '',
                 password : ''
-            };
-
-            $scope.userVenueCount = {
-                count : ''
             };
 
             $scope.error = {
@@ -57,29 +55,28 @@
                 });
             };
 
-            // Adds a new venue to Hackney Social
-            $scope.getAdminCount = function() {
-                
+            (function getAdminCount() {
+
                 return $http({
                     url: '/api/current-admin/venue-count',
                     method: 'GET',
                     headers: {'Content-Type': 'application/x-www-form-urlencoded'},
                     transformRequest: $httpParamSerializer,
                     params: {
-                        "uid": $scope.newAdmin.uid,
+                        "uid": $scope.userDetails.uid,
                         "token" : $scope.userDetails.HStoken
                     }
                 })
                 .then(function(res){
                     // log the response & assign it to userVenueCount $scope
                     console.log(res);
-                    $scope.userVenueCount.count = res;
+                    $scope.userDetails.venueCount = res;
                 }, function(err){
                     // log the error & assign it to newAdminUserRes $scope
                     console.log(err);
                     $scope.error.message = err;
                 });
-            };
+            })();
 
         }
         

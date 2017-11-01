@@ -52,3 +52,34 @@ module.exports = router => {
 
     });
 };
+
+// Move into a service & call from here every 5 mins and from venue
+            // Adds a new venue to Hackney Social
+            /*var getAdminCount = function() {
+                var path = $location.path();
+                if (path == "/admin/profile/home") {
+
+                return $http({
+                    url: '/api/current-admin/venue-count',
+                    method: 'GET',
+                    headers: {'Content-Type': 'application/x-www-form-urlencoded'},
+                    transformRequest: $httpParamSerializer,
+                    params: {
+                        "uid": $scope.userDetails.uid,
+                        "token" : $scope.userDetails.HStoken
+                    }
+                })
+                .then(function(res){
+                    // log the response & assign it to userVenueCount $scope
+                    console.log(res);
+                    $scope.userDetails.venueCount = res;
+                }, function(err){
+                    // log the error & assign it to newAdminUserRes $scope
+                    console.log(err);
+                    $scope.error.message = err;
+                });
+            }};
+
+            (function getAdminCountTick() {
+                    $interval(getAdminCount, 30000);
+            })();*/
