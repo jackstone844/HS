@@ -115,6 +115,28 @@
                         }
                         // IF NO HSToken -> push to login
                     }
+                })
+                .state('admin.addadmin', {
+                    url: '/addadmin',
+                    controller: 'adminAddadminController',
+                    templateUrl: 'components/admin-section/admin-addAdmin/addAdminView.html',
+                    resolve: { 
+                        requireAuth: function($state, Auth) {
+                            return Auth.$requireSignIn().then(function(auth){
+                                return;
+                            }, function(error){
+                                if (localStorage.getItem('HSToken')) {
+                                    localStorage.removeItem('HSToken');
+                                    setTimeout(function() {
+                                        $state.go('login');
+                                    }, 500);
+                                } else {
+                                    $state.go('login');
+                                }     
+                            });
+                        }
+                        // IF NO HSToken -> push to login
+                    }
                 });
         });
 })();

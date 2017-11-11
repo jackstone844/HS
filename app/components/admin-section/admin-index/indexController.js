@@ -34,6 +34,15 @@
                     angular.element('a').removeClass("active");
                     angular.element(this).addClass("active");
                 });
-            });     
+            });
+            
+            (function() {
+                StorageBucket.ref('logo.png').getDownloadURL().then(function(url) {
+                    var logo = url;
+                    var img = document.getElementById('logo');
+                    img.src = logo;
+                });
+            })();
         }
+
 })();

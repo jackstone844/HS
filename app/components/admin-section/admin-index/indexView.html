@@ -1,5 +1,5 @@
 <!--Header-Section-->
-<header>
+    <header>
         <nav class="navbar navbar-default navbar-fixed-top">
             <div class="container">
                 <div class="navbar-header">
@@ -8,12 +8,12 @@
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span> 
                     </button>
-                <div class="logo"><a href="javascript:void(0)"><img src="gs://hackneysocial-71b7f.appspot.com/logo.png" alt=""></a></div>
+                    <div class="logo"><a href="javascript:void(0)"><img id="logo" src="" alt=""></a></div>
                 </div>
                 <div class="collapse navbar-collapse" id="myNavbar">
                     <ul class="nav navbar-nav">
                         <li class="visible-xs visible-sm" ui-sref-active="active"><a ng-click="collapse()" class="active" ui-sref="admin.profile">Profile</a></li>
-                        <li class="visible-xs visible-sm" ui-sref-active="active"><a ng-click="collapse()" ui-sref="admin.profile">Add Admin</a></li>
+                        <li class="visible-xs visible-sm" ui-sref-active="active"><a ng-click="collapse()" ui-sref="admin.addadmin">Add Admin</a></li>
                         <li class="visible-xs visible-sm" ui-sref-active="active"><a ng-click="collapse()" ui-sref="admin.addvenue">Add Venue</a></li>
                         <li class="visible-xs visible-sm" ui-sref-active="active"><a ng-click="collapse()" ui-sref="admin.dashboard">Data</a></li>
                         <li class="" ui-sref-active="active"><a ui-sref="admin.profile">Explore Hackey Social</a></li>
@@ -33,7 +33,7 @@
                     <div class="top-content-inner-nav col-lg-1 col-md-1 col-sm-1 hidden-xs hidden-sm">
                         <ul class="nav nav-bar">
                             <li class="navigation-item" ui-sref-active="active"><a id='profile' class="active" ui-sref="admin.profile"><i class="fa fa-fw fa-user fa-2x"></i></a></li>
-                            <li class="navigation-item" ui-sref-active="active"><a id='admin' ui-sref="admin.profile"><i class="fa fa-fw fa-unlock-alt fa-2x"></i></a></li>
+                            <li class="navigation-item" ui-sref-active="active"><a id='admin' ui-sref="admin.addadmin"><i class="fa fa-fw fa-unlock-alt fa-2x"></i></a></li>
                             <li class="navigation-item" ui-sref-active="active"><a id='venue' ui-sref="admin.addvenue"><i class="fa fa-fw fa-plus-circle fa-2x"></i></a></li>
                             <li class="navigation-item" ui-sref-active="active"><a id='data' ui-sref="admin.dashboard"><i class="fa fa-fw fa-bar-chart-o fa-2x"></i></a></li>
                             <li class="navigation-item"><a ng-click="logout()" type="submit"><i class="fa fa-fw fa-sign-out fa-2x"></i></a></li>
