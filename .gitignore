@@ -1,4 +1,5 @@
 *.json
 api/middleware/*
-assets/js/app.js
+assets_old/js/app.js
 api/helpers/*
+app/app.module.js

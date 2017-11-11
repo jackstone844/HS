@@ -10,12 +10,12 @@ const autoprefixer = require('gulp-autoprefixer');
 const gulpif = require('gulp-if');
 const babel = require('gulp-babel');
 
-const outputPaths = 'public/public/compiled';
+const outputPaths = 'assets/public/compiled';
 let prod = false;
 
 const inputPaths = {
-    js: 'app/**/*.js',
-    templates: 'app/**/*.html'
+    js: 'assets/js/**/*.js',
+    templates: 'assets/**/*.html'
 };
 
 /*
