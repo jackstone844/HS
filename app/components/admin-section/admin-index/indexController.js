@@ -8,7 +8,7 @@
         adminIndexController.$injext = ['$scope', 'Auth', '$state', 'StorageBucket'];
 
         function adminIndexController ($scope, Auth, $state, StorageBucket) { 
-            
+
             $scope.userDetails = {
                 uid : Auth.$getAuth().uid,
                 FBtoken : Auth.$getAuth().refreshToken,

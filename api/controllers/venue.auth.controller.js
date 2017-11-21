@@ -36,9 +36,9 @@ module.exports = router => {
     // Adds the name of the venue added to the Admins profile in the DB
     router.post('/api/add/venue', (req, res, next) => {
 
-        function addVenue (venueId, venueName, description, addressLine1, addressLine2, postCode, rating, price, features, category, starCount, adminUid) {    
+        function addVenue (venueId, venueName, description, addressLine1, postCode, rating, price, features, category, facebook, instagram, website, contactNumber, closestStation, pictureUrl, adminUid) {    
             let itemRef = adminDatabaseRef.ref('item/' + venueId);
-            let venudid = venueId;
+            let venueid = venueId;
             let venuename = venueName;
             let adminuid = adminUid;
             itemRef.set({
@@ -46,14 +46,18 @@ module.exports = router => {
                 venueName: venueName,
                 description: description,
                 addressLine1 : addressLine1,
-                addressLine2 : addressLine2,
                 postCode: postCode,
                 rating: rating,
                 price: price,
                 features: features,
                 category: category,
+                facebook : facebook,
+                instagram : instagram,
+                website : website,
+                contactNumber : contactNumber,
+                closestStation : closestStation,
+                pictureUrl : pictureUrl,
                 publishTime: (new Date()).getTime(),
-                starCount: starCount,
                 adminUid: adminUid
             })
             .then(function(){
@@ -87,7 +91,7 @@ module.exports = router => {
             userRefVenue.child(venueId).set(venueName);
         };
 
-        addVenue(req.body.venueId, req.body.venueName, req.body.description, req.body.addressLine1, req.body.addressLine2, req.body.postCode, req.body.rating, req.body.price, req.body.features, req.body.category, req.body.starCount, req.body.adminUid);
+        addVenue(req.body.venueId, req.body.venueName, req.body.description, req.body.addressLine1, req.body.postCode, req.body.rating, req.body.price, req.body.features, req.body.category, req.body.facebook, req.body.instagram, req.body.website, req.body.contactNumber, req.body.closestStation, req.body.pictureUrl, req.body.adminUid);
         
     });
 

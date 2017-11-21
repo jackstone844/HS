@@ -1,11 +1,46 @@
 <!-- Admin Top Content View -->
 
 <div class="flipInY wow animated">
-    <h3>I am the add admin view</h3>
-    <h2>creating websites that make you stop &amp; stare</h2>
-    <p> Accusantium quam, aliquam ultricies eget tempor id, aliquam eget nibh et. Maecen aliquam, risus at semper. Proin iaculis purus consequat sem cure digni ssim. Donec porttitora entum. </p>
-    <p>hi</p>
-    <p>hi</p>
-    <p>hi</p>
-    <a href="#service" class="learn_more2">Learn more</a> 
+    <h3>Add a new admin</h3>
+    <h2 class="hidden-xs hidden-sm">On-board like-minded people to add venues &amp; expand our coverage</h2>
+    <!--p> Accusantium quam, aliquam ultricies eget tempor id, aliquam eget nibh et. Maecen aliquam, risus at semper. Proin iaculis purus consequat sem cure digni ssim. Donec porttitora entum. </p-->
+    
+    <form ng-submit="addNewAdmin()" class="form-horizontal">
+        <div class="form-group form-group-lg">
+            <label for="newadminInputUid" class="col-sm-6 control-label input-lg">Username</label>
+            <div class="col-sm-6">
+                <input type="text" class="form-control input-lg" id="newadminInputUid" placeholder="" ng-model="newAdmin.uid" required>
+                <p class="help-block hidden-xs">A unique username of your choice e.g stoney1938</p>
+            </div>
+        </div>
+        <div class="form-group form-group-lg">
+            <label for="newadminInputDisplay" class="col-sm-6 control-label input-lg">First &amp; Last Name</label>
+            <div class="col-sm-6">
+                <input type="text" class="form-control input-lg" id="newadminInputDisplay" placeholder="" ng-model="newAdmin.displayName" required>
+                <p class="help-block hidden-xs">The admins first &amp; last name e.g Jack Stone</p>
+            </div>
+        </div>
+        <div class="form-group form-group-lg">
+            <label for="newadminInputEmail" class="col-sm-6 control-label input-lg">Email</label>
+            <div class="col-sm-6">
+                <input type="email" class="form-control input-lg" id="newadminInputEmail" placeholder="" ng-model="newAdmin.email" required>
+                <p class="help-block hidden-xs">The new admin's email address</p>
+            </div>
+        </div>
+        <div class="form-group form-group-lg">
+            <label for="newadminInputPassword" class="col-sm-6 control-label input-lg">Welcome Password</label>
+            <div class="col-sm-6">
+                <input type="password" class="form-control input-lg" id="newadminInputPassword" placeholder="" ng-model="newAdmin.password" required>
+                <p class="help-block hidden-xs">Must be more than 6 characters long</p>
+                <p class="help-block hidden-xs">We will ask the new admin to reset this password</p>
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-sm-2">
+                <button type="submit" class="btn btn-default btn-lg">Create Admin</button>
+            </div>
+        </div>
+    </form>
+
 </div>
+

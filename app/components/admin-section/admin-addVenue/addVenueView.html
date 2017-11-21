@@ -1,11 +1,214 @@
 <!-- Admin Top Content View -->
 
 <div class="flipInY wow animated">
-    <h3>I am the add venue view</h3>
-    <h2>creating websites that make you stop &amp; stare</h2>
-    <p> Accusantium quam, aliquam ultricies eget tempor id, aliquam eget nibh et. Maecen aliquam, risus at semper. Proin iaculis purus consequat sem cure digni ssim. Donec porttitora entum. </p>
-    <p>hi</p>
-    <p>hi</p>
-    <p>hi</p>
-    <a href="#service" class="learn_more2">Learn more</a> 
-</div>
+    <h3>Add a new venue</h3>
+    <h2 class="hidden-xs hidden-sm">Expand our never ending list of awesome venues</h2>
+    
+    <form ng-submit="addNewVenue()" class="form-horizontal">
+        <div class="form-group form-group-lg">
+            <label for="newvenueInputId" class="col-sm-6 control-label input-lg">Venue ID</label>
+            <div class="col-sm-6">
+                <input type="text" class="form-control input-lg" id="newvenueInputId" placeholder="" ng-model="newVenue.venueId" required>
+                <p class="help-block hidden-xs">Unique venue ID e.g crate-brewery or victoria-park</p>
+            </div>
+        </div>
+        <div class="form-group form-group-lg">
+            <label for="newvenueInputName" class="col-sm-6 control-label input-lg">Venue Name</label>
+            <div class="col-sm-6">
+                <input type="text" class="form-control input-lg" id="newvenueInputName" placeholder="" ng-model="newVenue.venueName" required>
+                <p class="help-block hidden-xs">Venue Name e.g Crate Brewery or Victoria Park</p>
+            </div>
+        </div>
+        <div class="form-group form-group-lg">
+            <label for="newvenueInputCategory" class="col-sm-6 control-label input-lg">Primary Category</label>
+            <div class="col-sm-6">
+                <select class="form-control input-lg" id="newvenueInputCategory" ng-model="selectedcat" ng-change="assignSelectedDropdown(selectedcat, 'category')">
+                    <option value="watering holes">Watering Holes</option>
+                    <option value="Good Grub">Good Grub</option>
+                    <option value="Outdoors &amp; Markets">Outdoors &amp; Markets</option>
+                    <option value="Coffee Shops &amp; Brunch">Coffee Shops &amp; Brunch</option>
+                    <option value="Something Different">Something Different</option>
+                </select>
+                <p class="help-block hidden-xs">Select the primary category for the venue</p>
+            </div>
+        </div>
+        <div class="form-group form-group-lg">
+            <label for="newvenueInputSubCategory" class="col-sm-6 control-label input-lg">Secondary Category</label>
+            <div class="col-sm-6">
+                <select class="form-control input-lg" id="newvenueInputSubCategory" ng-model="selectedsubcat" ng-change="assignSelectedDropdown(selectedsubcat, 'subCategory')">
+                    <option value="watering holes">Watering Holes</option>
+                    <option value="Good Grub">Good Grub</option>
+                    <option value="Outdoors &amp; Markets">Outdoors &amp; Markets</option>
+                    <option value="Coffee Shops &amp; Brunch">Coffee Shops &amp; Brunch</option>
+                    <option value="Something Different">Something Different</option>
+                </select>
+                <p class="help-block hidden-xs">Select the secondary category for the venue</p>
+            </div>
+        </div>
+        <div class="form-group form-group-lg">
+            <label class="col-sm-6 control-label input-lg">Main Features</label>
+            <div class="col-sm-6">        
+                <div class="checkbox">
+                    <label><input ng-click="assignSelectedRadios('Arcade Games', 'features')" class="feautureInput" type="checkbox" value="Arcade Games">Arcade Games</label>
+                </div>
+                <div class="checkbox">
+                    <label><input ng-click="assignSelectedRadios('Craft Beer', 'features')" class="feautureInput" type="checkbox" value="Craft Beer">Craft Beer</label>
+                </div>
+                <div class="checkbox disabled">
+                    <label><input ng-click="assignSelectedRadios('Tapas', 'features')" class="feautureInput"  type="checkbox" value="Tapas">Tapas</label>
+                </div>
+                <div class="checkbox disabled">
+                    <label><input ng-click="assignSelectedRadios('Pizzeria', 'features')" class="feautureInput"  type="checkbox" value="Pizzeria">Pizzeria</label>
+                </div>
+                <div class="checkbox disabled">
+                    <label><input ng-click="assignSelectedRadios('Greenery', 'features')" class="feautureInput"  type="checkbox" value="Greenery">Greenery</label>
+                </div>
+                <div class="checkbox disabled">
+                    <label><input ng-click="assignSelectedRadios('BBQ', 'features')" class="feautureInput"  type="checkbox" value="BBQ">BBQ</label>
+                </div>
+                <div class="checkbox disabled">
+                    <label><input ng-click="assignSelectedRadios('Dancefloor', 'features')" class="feautureInput"  type="checkbox" value="Dancefloor">Dancefloor</label>
+                </div>
+                <div class="checkbox disabled">
+                    <label><input ng-click="assignSelectedRadios('Foozeball', 'features')" class="feautureInput"  type="checkbox" value="Foozeball">Foozeball</label>
+                </div>
+                <p class="help-block hidden-xs">Select any features this venue has</p>
+            </div>
+        </div>          
+        <div class="form-group form-group-lg">
+            <label for="newvenueInputDescription" class="col-sm-6 control-label input-lg">Description</label>
+            <div class="col-sm-6">
+                <textarea class="form-control input-lg" rows="6" id="newvenueInputDescription" ng-model="newVenue.description"></textarea>
+                <p class="help-block hidden-xs">A brief description of the venue</p>
+            </div>
+        </div>
+        <div class="form-group form-group-lg">
+            <label for="newvenueInputAddress" class="col-sm-6 control-label input-lg">Address Line One</label>
+            <div class="col-sm-6">
+                <input type="text" class="form-control input-lg" id="newvenueInputAddress" placeholder="" ng-model="newVenue.addressLine1" required>
+                <p class="help-block hidden-xs">Unit 7, Queens Yard, Hackney Wick</p>
+            </div>
+        </div>
+        <div class="form-group form-group-lg">
+            <label for="newvenueInputPostcode" class="col-sm-6 control-label input-lg">Postcode</label>
+            <div class="col-sm-6">
+                <input type="text" class="form-control input-lg" id="newvenueInputPostcode" placeholder="" ng-model="newVenue.postCode" required>
+                <p class="help-block hidden-xs">E9 5EN</p>
+            </div>
+        </div>
+        <div class="form-group form-group-lg">
+            <label for="newvenueInputRating" class="col-sm-6 control-label input-lg">Venue Rating /10</label>
+            <div class="col-sm-6">
+                <select class="form-control input-lg" id="newvenueInputRating" ng-model="selectedrating" ng-change="assignSelectedDropdown(selectedrating, 'rating')">
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                    <option value="5">5</option>
+                    <option value="6">6</option>
+                    <option value="7">7</option>
+                    <option value="8">8</option>
+                    <option value="9">9</option>
+                    <option value="10">10</option>
+                </select>
+                <p class="help-block hidden-xs">Please rate this venue out of 10</p>
+            </div>
+        </div>
+        <div class="form-group form-group-lg">
+            <label for="newvenueInputPrice" class="col-sm-6 control-label input-lg">Venue Price /5</label>
+            <div class="col-sm-6">
+                <select class="form-control input-lg" id="newvenueInputPrice" ng-model="selectedprice" ng-change="assignSelectedDropdown(selectedprice, 'price')">
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                    <option value="5">5</option>
+                </select>
+                <p class="help-block hidden-xs">How expensive is this venue out of 5</p>
+            </div>
+        </div>
+        <div class="form-group form-group-lg">
+            <label for="newvenueWebsite" class="col-sm-6 control-label input-lg">Venues Website</label>
+            <div class="col-sm-6">
+                <input type="text" class="form-control input-lg" id="newvenueWebsite" placeholder="" ng-model="newVenue.website" required>
+                <p class="help-block hidden-xs">e.g http://cratebrewery.com/</p>
+            </div>
+        </div>
+        <div class="form-group form-group-lg">
+            <label for="newvenueInsta" class="col-sm-6 control-label input-lg">Venues Instagram</label>
+            <div class="col-sm-6">
+                <input type="text" class="form-control input-lg" id="newvenueInsta" placeholder="" ng-model="newVenue.instagram" required>
+                <p class="help-block hidden-xs">e.g https://www.instagram.com/cratebrewery/</p>
+            </div>
+        </div>
+        <div class="form-group form-group-lg">
+            <label for="newvenueFb" class="col-sm-6 control-label input-lg">Venues Facebook</label>
+            <div class="col-sm-6">
+                <input type="text" class="form-control input-lg" id="newvenueFb" placeholder="" ng-model="newVenue.facebook" required>
+                <p class="help-block hidden-xs">e.g https://www.facebook.com/search/top/?q=crate%20brewery</p>
+            </div>
+        </div>
+        <div class="form-group form-group-lg">
+            <label for="newvenueContact" class="col-sm-6 control-label input-lg">Venues Contact Number</label>
+            <div class="col-sm-6">
+                <input type="text" class="form-control input-lg" id="newvenueContact" placeholder="" ng-model="newVenue.contactNumber" required>
+                <p class="help-block hidden-xs">e.g 02085 333 331</p>
+            </div>
+        </div>
+        <div class="form-group form-group-lg">
+            <label for="newvenueInputClosestStaition" class="col-sm-6 control-label input-lg">Closest Station to the Venue</label>
+            <div class="col-sm-6">
+                <select class="form-control input-lg" id="newvenueClosestStaition" ng-model="selectedstation" ng-change="assignSelectedDropdown(selectedstation, 'closestStation')">
+                    <option value="Hackney Wick">Hackney Wick</option>
+                    <option value="Hackney Central">Hackney Central</option>
+                    <option value="Homerton">Homerton</option>
+                    <option value="Hackney Downs">Hackney Downs</option>
+                    <option value="London Fields">London Fields</option>
+                    <option value="Mile End">Mile End</option>
+                    <option value="Shoreditch High Street">Shoreditch High Street</option>
+                    <option value="Old Street">Old Street</option>
+                </select>
+                <p class="help-block hidden-xs">The closest staition to the venue</p>
+            </div>
+        </div>
+        
+        <!--div class="form-group form-group-lg">
+            <label class="col-sm-6 control-label input-lg">Select a picture to upload</label>
+            <div class="col-sm-6">                
+                <div class="form-inline">
+                    <div class="form-group">
+                        <input type="file" name="files[]" id="js-upload-files" ng-model="image" onchange="angular.element(this).scope().handleFiles(this)" multiple>
+                    </div>
+                    <button type="button" class="btn btn-lg btn-primary" id="js-upload-submit" ng-click="uploadChecker()">Upload files</button>
+                </div>
+            </div>
+        </div-->
+
+        <div class="form-group form-group-lg">
+        <label class="col-sm-6 control-label input-lg">Select a picture to upload</label>
+            <div class="input-group input-lg col-sm-6">
+                <label class="input-group-btn">
+                    <span class="btn btn-primary btn-lg">
+                        Browse files... <input type="file" style="display: none;" id="js-upload-files" ng-model="image" onchange="angular.element(this).scope().handleFiles(this); $('#js-upload-files-info').val($(this).val())" multiple="">
+                    </span>
+                </label>
+                <input type="text" class="form-control input-lg" id="js-upload-files-info" readonly="">
+            </div>
+            <div class="">
+                <div class="col-sm-2">
+                    <button type="button" class="btn btn-default btn-lg" id="js-upload-submit" ng-click="uploadChecker()">Upload Image</button>
+                </div>
+            </div>
+            <span class="">
+                <p class="help-block hidden-xs">Last step! Select at image of the venue and add it to our database</p>
+            </span>
+        </div>
+
+        <div class="form-group">
+            <div class="col-sm-2">
+                <button type="submit" class="btn btn-default btn-lg">Add Venue</button>
+            </div>
+        </div>
+    </form>
+
+</div> 

@@ -10,5 +10,5 @@ function StorageBucket($http, firebase) {
     
     return storage;
 
-}
+} 
     
